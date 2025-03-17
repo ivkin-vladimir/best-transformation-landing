@@ -45,14 +45,14 @@ const BookingSection: React.FC = () => {
   };
 
   return (
-    <section id="booking" className="section-container bg-gradient-to-b from-white to-best-cream">
+    <section id="booking" className="section-container bg-best-purple text-white">
       <div className="max-w-5xl mx-auto">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line"
+          className="text-3xl md:text-4xl text-white text-center mb-16 decorative-line"
         >
           Сделайте первый шаг к гармонии и самопознанию
         </motion.h2>
@@ -64,61 +64,61 @@ const BookingSection: React.FC = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-          <div className="bg-white/90 rounded-xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-foreground mb-6">Запись на консультацию</h3>
-            <p className="text-foreground/90 mb-6">
+          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20">
+            <h3 className="text-2xl font-bold text-best-gold mb-6">Запись на консультацию</h3>
+            <p className="text-white/90 mb-6">
               Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее время для обсуждения деталей консультации.
             </p>
             
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <label htmlFor="name" className="block text-foreground mb-2">Ваше имя *</label>
+                <label htmlFor="name" className="block text-white mb-2">Ваше имя *</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground bg-white/80"
+                  className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
                   required
                 />
               </div>
               
               <div className="mb-4">
-                <label htmlFor="phone" className="block text-foreground mb-2">Телефон *</label>
+                <label htmlFor="phone" className="block text-white mb-2">Телефон *</label>
                 <input
                   type="tel"
                   id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground bg-white/80"
+                  className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
                   required
                 />
               </div>
               
               <div className="mb-4">
-                <label htmlFor="email" className="block text-foreground mb-2">Email *</label>
+                <label htmlFor="email" className="block text-white mb-2">Email *</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground bg-white/80"
+                  className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
                   required
                 />
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block text-foreground mb-2">Сообщение (необязательно)</label>
+                <label htmlFor="message" className="block text-white mb-2">Сообщение (необязательно)</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground bg-white/80"
+                  className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
                 ></textarea>
               </div>
               

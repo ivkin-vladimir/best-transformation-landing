@@ -14,7 +14,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggle }) =
   return (
     <div className="border-b border-border last:border-0">
       <button
-        className="w-full text-left py-5 flex items-center justify-between focus:outline-none"
+        className="w-full text-left py-5 px-6 flex items-center justify-between focus:outline-none"
         onClick={toggle}
       >
         <h3 className="text-lg font-medium text-foreground">{question}</h3>
@@ -31,7 +31,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggle }) =
           isOpen ? "max-h-96 opacity-100 mb-5" : "max-h-0 opacity-0"
         )}
       >
-        <p className="text-foreground/80">{answer}</p>
+        <p className="text-foreground/80 px-6">{answer}</p>
       </div>
     </div>
   );
