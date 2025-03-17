@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const BenefitsSection: React.FC = () => {
   const benefits = [
@@ -30,28 +31,64 @@ const BenefitsSection: React.FC = () => {
     }
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section className="section-container bg-white">
-      <div className="max-w-4xl mx-auto">
+    <section id="results" className="section-container bg-white">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="max-w-4xl mx-auto"
+      >
         <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
           Что вы получите после консультации
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {benefits.map((benefit, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="bg-best-cream rounded-lg p-6 border-b-4 border-best-gold hover:shadow-lg transition-shadow duration-300"
+              variants={item}
+              className="bg-best-cream rounded-lg p-6 border-b-4 border-best-gold hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex flex-col items-center text-center">
-                <span className="text-4xl mb-4">{benefit.icon}</span>
+                <motion.span 
+                  initial={{ scale: 0.8 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-4xl mb-4"
+                >
+                  {benefit.icon}
+                </motion.span>
                 <h3 className="text-xl font-bold text-best-purple mb-3">{benefit.title}</h3>
                 <p className="text-gray-700">{benefit.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

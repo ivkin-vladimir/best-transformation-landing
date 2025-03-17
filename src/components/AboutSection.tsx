@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const AboutSection: React.FC = () => {
   return (
@@ -9,11 +10,17 @@ const AboutSection: React.FC = () => {
           Владимир Ивкин – ваш проводник к самопознанию
         </h2>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-12 items-center"
+        >
           <div className="order-2 md:order-1">
             <h3 className="text-2xl text-best-purple mb-6">Профессиональный опыт</h3>
             <p className="text-lg mb-6">
-              Владимир Ивкин — опытный психолог с более чем 15-летним стажем работы в области психологической диагностики и коррекции. Автор метода BEST-психопунктуры, который успешно применяется для решения широкого спектра психологических проблем.
+              Владимир Ивкин — опытный психолог с более чем 15-летним стажем работы в области психологической диагностики и коррекции. Ученик профессора Халлима Калера, практикующий метод BEST-психопунктуры, который успешно применяется для решения широкого спектра психологических проблем.
             </p>
             
             <h3 className="text-2xl text-best-purple mb-6">Философия работы</h3>
@@ -26,7 +33,13 @@ const AboutSection: React.FC = () => {
             </blockquote>
           </div>
           
-          <div className="order-1 md:order-2">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="order-1 md:order-2"
+          >
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-best-gold rounded-lg"></div>
               <img 
@@ -36,11 +49,11 @@ const AboutSection: React.FC = () => {
               />
               <div className="bg-white shadow-lg p-4 rounded absolute -bottom-6 -right-6 z-20 border border-best-lightGray">
                 <p className="font-playfair text-best-purple font-bold">Владимир Ивкин</p>
-                <p className="text-sm text-best-darkGray">Психолог, автор метода BEST-психопунктуры</p>
+                <p className="text-sm text-best-darkGray">Психолог, практикующий метод BEST-психопунктуры</p>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

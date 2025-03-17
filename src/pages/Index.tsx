@@ -11,6 +11,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import BenefitsSection from '@/components/BenefitsSection';
 import FaqSection from '@/components/FaqSection';
 import BookingSection from '@/components/BookingSection';
+import AuthorSection from '@/components/AuthorSection';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
       <Hero />
       <MethodSection />
       <AboutSection />
+      <AuthorSection />
       <ProblemsSection />
       <AdvantagesSection />
       <ProcessSection />

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,6 +23,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Метод', href: '#method' },
     { name: 'О Владимире', href: '#about' },
+    { name: 'Автор метода', href: '#author' },
     { name: 'Процесс', href: '#process' },
     { name: 'Результаты', href: '#results' },
     { name: 'Записаться', href: '#booking' },
@@ -32,78 +33,96 @@ const Navbar = () => {
     <nav 
       className={cn(
         'fixed w-full z-50 transition-all duration-300',
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        scrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-2' : 'bg-transparent py-4'
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center"
+        >
           <a href="#top" className="font-playfair text-best-purple text-xl md:text-2xl font-bold">
             BEST-психопунктура
           </a>
-        </div>
+        </motion.div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="hidden md:flex items-center space-x-8"
+        >
           <ul className="flex space-x-6">
-            {navItems.map((item) => (
-              <li key={item.name}>
+            {navItems.map((item, index) => (
+              <motion.li 
+                key={item.name}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+              >
                 <a 
                   href={item.href}
-                  className="text-best-darkGray hover:text-best-purple transition-colors duration-300"
+                  className="text-best-darkGray hover:text-best-purple transition-colors duration-300 relative group"
                 >
                   {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-best-gold transition-all duration-300 group-hover:w-full"></span>
                 </a>
-              </li>
+              </motion.li>
             ))}
           </ul>
-          <a 
-            href="tel:+79000000000" 
-            className="flex items-center text-best-purple font-medium hover:text-best-blue transition-colors"
-          >
-            <Phone size={18} className="mr-2" />
-            +7 (900) 000-00-00
-          </a>
-        </div>
+        </motion.div>
 
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden flex flex-col space-y-1.5"
+        <motion.button 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="md:hidden flex flex-col space-y-1.5 z-50"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
         >
           <span className={`block w-6 h-0.5 bg-best-darkGray transition-transform duration-300 ${mobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''}`}></span>
           <span className={`block w-6 h-0.5 bg-best-darkGray transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
           <span className={`block w-6 h-0.5 bg-best-darkGray transition-transform duration-300 ${mobileMenuOpen ? 'transform -rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
+        </motion.button>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden absolute w-full bg-white shadow-lg transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="container mx-auto px-4 py-4">
-          <ul className="flex flex-col space-y-4">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <a 
-                  href={item.href}
-                  className="block py-2 text-best-darkGray hover:text-best-purple transition-colors duration-300"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a 
-                href="tel:+79000000000" 
-                className="flex items-center py-2 text-best-purple font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Phone size={18} className="mr-2" />
-                +7 (900) 000-00-00
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden absolute w-full bg-white shadow-lg overflow-hidden"
+          >
+            <div className="container mx-auto px-4 py-6">
+              <ul className="flex flex-col space-y-4">
+                {navItems.map((item, index) => (
+                  <motion.li 
+                    key={item.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.05 * index }}
+                  >
+                    <a 
+                      href={item.href}
+                      className="block py-2 text-best-darkGray hover:text-best-purple transition-colors duration-300"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

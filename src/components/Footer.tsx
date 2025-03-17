@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -23,20 +24,15 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-bold mb-4 font-playfair">Контактная информация</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
-                <Phone size={18} className="mr-3 text-best-gold" />
-                <a href="tel:+79000000000" className="hover:text-best-gold transition-colors">
-                  +7 (900) 000-00-00
-                </a>
-              </li>
-              <li className="flex items-center">
                 <Mail size={18} className="mr-3 text-best-gold" />
-                <a href="mailto:contact@best-psycho.ru" className="hover:text-best-gold transition-colors">
-                  contact@best-psycho.ru
+                <a href="mailto:vladimir@ivkin.me" className="hover:text-best-gold transition-colors">
+                  vladimir@ivkin.me
                 </a>
               </li>
-              <li className="flex items-start">
-                <MapPin size={18} className="mr-3 text-best-gold mt-1 flex-shrink-0" />
-                <span>г. Санкт-Петербург, ул. Примерная, д. 123, офис 45</span>
+              <li className="mt-4">
+                <p className="text-white/80">
+                  Сайт: <a href="https://ivkin.me" className="text-best-gold hover:text-best-lightGold transition-colors">ivkin.me</a>
+                </p>
               </li>
             </ul>
           </div>
@@ -49,6 +45,9 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#about" className="hover:text-best-gold transition-colors">О Владимире</a>
+              </li>
+              <li>
+                <a href="#author" className="hover:text-best-gold transition-colors">Автор метода</a>
               </li>
               <li>
                 <a href="#process" className="hover:text-best-gold transition-colors">Процесс</a>
@@ -75,12 +74,12 @@ const Footer: React.FC = () => {
           </p>
           
           <div className="flex space-x-4">
-            <a href="#" className="text-white/70 hover:text-white transition-colors">
+            <Link to="/privacy-policy" className="text-white/70 hover:text-white transition-colors">
               Политика конфиденциальности
-            </a>
-            <a href="#" className="text-white/70 hover:text-white transition-colors">
+            </Link>
+            <Link to="/terms" className="text-white/70 hover:text-white transition-colors">
               Условия использования
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -85,6 +85,7 @@
 
   body {
     @apply bg-white text-best-darkGray font-raleway;
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -105,12 +106,34 @@
   width: 80px;
   height: 3px;
   background-color: theme('colors.best.gold');
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .cta-button {
-  @apply bg-best-gold hover:bg-best-lightGold text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1;
+  @apply bg-best-gold hover:bg-best-lightGold text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg;
 }
 
 .section-container {
-  @apply container mx-auto px-4 py-16 md:py-24;
+  @apply container mx-auto px-4 py-16 md:py-24 scroll-mt-16;
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-best-purple to-best-blue bg-clip-text text-transparent;
+}
+
+.glass-card {
+  @apply bg-white/90 backdrop-blur-sm shadow-lg rounded-lg;
 }

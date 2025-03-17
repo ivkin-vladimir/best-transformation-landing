@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   return (
@@ -17,37 +18,62 @@ const Hero: React.FC = () => {
       
       <div className="container mx-auto px-4 z-10 pt-20">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+          >
             Трансформация личности за один сеанс с методом BEST-психопунктуры
-          </h1>
+          </motion.h1>
           
-          <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-xl md:text-2xl mb-8 opacity-90"
+          >
             Познайте себя на глубинном уровне и найдите решения жизненных проблем с Владимиром Ивкиным
-          </p>
+          </motion.p>
           
-          <p className="text-lg md:text-xl mb-10 opacity-80 animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-lg md:text-xl mb-10 opacity-80"
+          >
             Уникальный диагностический метод с использованием древних шаманских практик, который за один сеанс заменяет годы психоанализа
-          </p>
+          </motion.p>
           
-          <div className="animate-fade-in" style={{ animationDelay: '600ms' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+          >
             <a 
               href="#booking" 
               className={cn(
                 "cta-button",
-                "inline-block text-lg md:text-xl mb-4"
+                "inline-block text-lg md:text-xl mb-4 group"
               )}
             >
-              Обрети гармонию сейчас
+              <span className="relative inline-block overflow-hidden">
+                <span className="relative z-10 inline-block transition-transform group-hover:translate-y-[-2px]">
+                  Обрети гармонию сейчас
+                </span>
+                <span className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></span>
+              </span>
             </a>
-            
-            <p className="text-sm md:text-base opacity-80 mt-6">
-              Персональные консультации в Санкт-Петербурге
-            </p>
-          </div>
+          </motion.div>
         </div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
         <a href="#method" aria-label="Scroll to learn more">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -64,7 +90,7 @@ const Hero: React.FC = () => {
             />
           </svg>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 };
