@@ -36,29 +36,29 @@ const ProcessSection: React.FC = () => {
   ];
 
   return (
-    <section id="process" className="section-container bg-white">
+    <section id="process" className="section-container">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
+        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
           Процесс консультации
         </h2>
         
         <div className="relative">
           {/* Vertical line connecting steps */}
-          <div className="absolute left-[28px] top-10 bottom-10 w-1 bg-best-lightPurple/30 hidden md:block"></div>
+          <div className="absolute left-[28px] top-10 bottom-10 w-1 bg-primary/30 hidden md:block"></div>
           
           {steps.map((step, index) => (
             <div key={index} className="mb-12 last:mb-0">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex md:flex-col items-center">
-                  <div className="w-14 h-14 rounded-full bg-best-purple text-white flex items-center justify-center text-xl font-bold flex-shrink-0 z-10">
+                  <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold flex-shrink-0 z-10">
                     {step.number}
                   </div>
                   {index < steps.length - 1 && (
-                    <div className="h-full w-1 bg-best-lightPurple/30 mx-auto my-2 md:hidden"></div>
+                    <div className="h-full w-1 bg-primary/30 mx-auto my-2 md:hidden"></div>
                   )}
                 </div>
                 
-                <div className="bg-best-cream rounded-lg shadow-md overflow-hidden flex-grow">
+                <div className="neo-glass rounded-lg overflow-hidden flex-grow">
                   <div className="md:flex">
                     <div className="md:w-1/3">
                       <div className="h-48 md:h-full">
@@ -70,8 +70,8 @@ const ProcessSection: React.FC = () => {
                       </div>
                     </div>
                     <div className="p-6 md:w-2/3">
-                      <h3 className="text-xl font-bold text-best-purple mb-3">{step.title}</h3>
-                      <p className="text-gray-700">{step.description}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-3">{step.title}</h3>
+                      <p className="text-foreground/80">{step.description}</p>
                     </div>
                   </div>
                 </div>

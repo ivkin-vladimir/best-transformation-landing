@@ -12,15 +12,15 @@ interface FaqItemProps {
 
 const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggle }) => {
   return (
-    <div className="border-b border-gray-200 last:border-0">
+    <div className="border-b border-border last:border-0">
       <button
         className="w-full text-left py-5 flex items-center justify-between focus:outline-none"
         onClick={toggle}
       >
-        <h3 className="text-lg font-medium text-best-purple">{question}</h3>
+        <h3 className="text-lg font-medium text-foreground">{question}</h3>
         <ChevronDown 
           className={cn(
-            "text-best-purple transition-transform duration-300",
+            "text-primary transition-transform duration-300",
             isOpen && "transform rotate-180"
           )} 
         />
@@ -31,7 +31,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer, isOpen, toggle }) =
           isOpen ? "max-h-96 opacity-100 mb-5" : "max-h-0 opacity-0"
         )}
       >
-        <p className="text-gray-700">{answer}</p>
+        <p className="text-foreground/80">{answer}</p>
       </div>
     </div>
   );
@@ -72,13 +72,13 @@ const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="section-container bg-best-lightGray">
+    <section id="faq" className="section-container">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
+        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
           Часто задаваемые вопросы
         </h2>
         
-        <div className="bg-white rounded-xl shadow-md">
+        <div className="neo-glass rounded-xl shadow-md">
           {faqs.map((faq, index) => (
             <FaqItem
               key={index}

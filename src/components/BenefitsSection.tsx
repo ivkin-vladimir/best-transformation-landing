@@ -47,7 +47,7 @@ const BenefitsSection: React.FC = () => {
   };
 
   return (
-    <section id="results" className="section-container bg-white">
+    <section id="results" className="section-container">
       <motion.div 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -55,7 +55,7 @@ const BenefitsSection: React.FC = () => {
         viewport={{ once: true }}
         className="max-w-4xl mx-auto"
       >
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
+        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
           Что вы получите после консультации
         </h2>
         
@@ -70,7 +70,7 @@ const BenefitsSection: React.FC = () => {
             <motion.div 
               key={index}
               variants={item}
-              className="bg-best-cream rounded-lg p-6 border-b-4 border-best-gold hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
+              className="neo-glass rounded-lg p-6 border-b-4 border-accent hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex flex-col items-center text-center">
                 <motion.span 
@@ -82,8 +82,8 @@ const BenefitsSection: React.FC = () => {
                 >
                   {benefit.icon}
                 </motion.span>
-                <h3 className="text-xl font-bold text-best-purple mb-3">{benefit.title}</h3>
-                <p className="text-gray-700">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
+                <p className="text-foreground/80">{benefit.description}</p>
               </div>
             </motion.div>
           ))}

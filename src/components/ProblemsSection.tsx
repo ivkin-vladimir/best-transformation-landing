@@ -32,9 +32,9 @@ const ProblemsSection: React.FC = () => {
   ];
 
   return (
-    <section id="problems" className="section-container bg-gradient-to-b from-best-cream to-white">
+    <section id="problems" className="section-container">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
+        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
           Проблемы, которые решает BEST-психопунктура
         </h2>
         
@@ -42,18 +42,18 @@ const ProblemsSection: React.FC = () => {
           {problems.map((problem, index) => (
             <div 
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-best-lightGray"
+              className="neo-glass p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-center mb-4">
                 <span className="text-4xl mr-3">{problem.icon}</span>
-                <h3 className="text-xl font-bold text-best-purple">{problem.category}</h3>
+                <h3 className="text-xl font-bold text-foreground">{problem.category}</h3>
               </div>
               
               <ul className="space-y-2">
                 {problem.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="flex items-start">
-                    <Check size={18} className="text-best-gold mr-2 mt-1 flex-shrink-0" />
-                    <span>{item}</span>
+                    <Check size={18} className="text-primary mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-foreground/90">{item}</span>
                   </li>
                 ))}
               </ul>

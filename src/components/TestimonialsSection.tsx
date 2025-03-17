@@ -46,7 +46,7 @@ const TestimonialsSection: React.FC = () => {
     return Array(5).fill(0).map((_, i) => (
       <svg 
         key={i} 
-        className={`w-5 h-5 ${i < rating ? 'text-best-gold' : 'text-gray-300'}`} 
+        className={`w-5 h-5 ${i < rating ? 'text-accent' : 'text-muted'}`} 
         fill="currentColor" 
         viewBox="0 0 20 20" 
         xmlns="http://www.w3.org/2000/svg"
@@ -57,16 +57,16 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="section-container bg-best-lightGray">
+    <section id="testimonials" className="section-container">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
+        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
           Истории успеха наших клиентов
         </h2>
         
-        <div className="relative bg-white rounded-xl shadow-lg p-8 md:p-12">
+        <div className="relative neo-glass rounded-xl shadow-lg p-8 md:p-12">
           <Quote 
             size={60} 
-            className="absolute text-best-purple/10 -top-6 -left-6 transform rotate-180"
+            className="absolute text-primary/10 -top-6 -left-6 transform rotate-180"
           />
           
           <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -79,11 +79,11 @@ const TestimonialsSection: React.FC = () => {
                 />
               </div>
               
-              <h3 className="text-xl font-bold text-best-purple">
+              <h3 className="text-xl font-bold text-foreground">
                 {testimonials[currentIndex].name}
               </h3>
               
-              <p className="text-gray-600 text-sm">
+              <p className="text-foreground/70 text-sm">
                 {testimonials[currentIndex].age} лет, {testimonials[currentIndex].profession}
               </p>
               
@@ -93,7 +93,7 @@ const TestimonialsSection: React.FC = () => {
             </div>
             
             <div className="md:w-2/3">
-              <p className="text-lg italic mb-6">
+              <p className="text-lg italic mb-6 text-foreground/90">
                 "{testimonials[currentIndex].text}"
               </p>
             </div>
@@ -103,7 +103,7 @@ const TestimonialsSection: React.FC = () => {
             {testimonials.map((_, index) => (
               <button 
                 key={index}
-                className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-best-gold' : 'bg-gray-300'}`}
+                className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-accent' : 'bg-muted'}`}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={`View testimonial ${index + 1}`}
               />
@@ -113,7 +113,7 @@ const TestimonialsSection: React.FC = () => {
           <div className="absolute top-1/2 -translate-y-1/2 -left-5 md:-left-6">
             <button 
               onClick={prevTestimonial}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-best-purple hover:text-white transition-colors duration-300"
+              className="w-10 h-10 rounded-full bg-background/20 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-300"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={24} />
@@ -123,7 +123,7 @@ const TestimonialsSection: React.FC = () => {
           <div className="absolute top-1/2 -translate-y-1/2 -right-5 md:-right-6">
             <button 
               onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-best-purple hover:text-white transition-colors duration-300"
+              className="w-10 h-10 rounded-full bg-background/20 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-primary hover:text-white transition-colors duration-300"
               aria-label="Next testimonial"
             >
               <ChevronRight size={24} />
