@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ProblemsSection: React.FC = () => {
   const problems = [
@@ -34,14 +35,24 @@ const ProblemsSection: React.FC = () => {
   return (
     <section id="problems" className="section-container">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl text-foreground text-center mb-16 decorative-line"
+        >
           Проблемы, которые решает BEST-психопунктура
-        </h2>
+        </motion.h2>
         
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
           {problems.map((problem, index) => (
-            <div 
+            <motion.div 
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
               className="neo-glass p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-center mb-4">
@@ -57,7 +68,7 @@ const ProblemsSection: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
         
