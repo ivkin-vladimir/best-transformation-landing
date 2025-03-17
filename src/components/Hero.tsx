@@ -1,68 +1,69 @@
 
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   return (
     <section 
       id="top" 
-      className="relative min-h-screen flex items-center text-white"
-      style={{
-        backgroundImage: 'linear-gradient(rgba(42, 42, 92, 0.8), rgba(93, 56, 145, 0.8)), url("https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      className="relative min-h-screen flex items-center grid-mesh"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-best-blue/40 to-best-purple/40"></div>
+      <div className="absolute inset-0 bg-neuro-dark bg-opacity-80 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent"></div>
+          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary/20 via-transparent to-transparent"></div>
+        </div>
+      </div>
       
       <div className="container mx-auto px-4 z-10 pt-20">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="mb-6 inline-block"
+          >
+            <span className="text-xs uppercase tracking-[0.3em] text-white/70 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+              Авангардный метод самопознания
+            </span>
+          </motion.div>
+          
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-glow"
           >
-            Трансформация личности за один сеанс с методом BEST-психопунктуры
+            <span className="text-gradient">Трансформация</span> личности <br/> за один сеанс
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl md:text-2xl mb-8 opacity-90"
-          >
-            Познайте себя на глубинном уровне и найдите решения жизненных проблем с Владимиром Ивкиным
-          </motion.p>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-lg md:text-xl mb-10 opacity-80"
+            className="text-xl md:text-2xl mb-8 text-white/80 max-w-3xl mx-auto"
           >
-            Уникальный диагностический метод с использованием древних шаманских практик, который за один сеанс заменяет годы психоанализа
+            Метод <span className="text-gradient font-bold">BEST-психопунктуры</span> открывает доступ к глубинным структурам психики и заменяет годы классического психоанализа
           </motion.p>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
           >
             <a 
               href="#booking" 
-              className={cn(
-                "cta-button",
-                "inline-block text-lg md:text-xl mb-4 group"
-              )}
+              className="cta-button text-lg group relative overflow-hidden"
             >
-              <span className="relative inline-block overflow-hidden">
-                <span className="relative z-10 inline-block transition-transform group-hover:translate-y-[-2px]">
-                  Обрети гармонию сейчас
-                </span>
-                <span className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300"></span>
-              </span>
+              <span className="relative z-10">Обрести гармонию сейчас</span>
+            </a>
+            
+            <a 
+              href="#method" 
+              className="bg-transparent border border-white/20 hover:border-white/40 text-white py-3 px-8 rounded-full transition-all duration-300 text-lg backdrop-blur-sm"
+            >
+              Узнать о методе
             </a>
           </motion.div>
         </div>
@@ -74,7 +75,7 @@ const Hero: React.FC = () => {
         transition={{ duration: 1, delay: 1.2 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
       >
-        <a href="#method" aria-label="Scroll to learn more">
+        <a href="#method" aria-label="Scroll to learn more" className="text-white/50 hover:text-white transition-colors">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             className="h-8 w-8" 
@@ -91,6 +92,10 @@ const Hero: React.FC = () => {
           </svg>
         </a>
       </motion.div>
+      
+      {/* Floating circle decorations */}
+      <div className="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-primary/10 blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 rounded-full bg-secondary/10 blur-3xl animate-pulse-slow"></div>
     </section>
   );
 };

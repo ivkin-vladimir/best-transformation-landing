@@ -4,55 +4,64 @@ import { motion } from 'framer-motion';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="section-container bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl text-best-purple text-center mb-16 decorative-line">
-          Владимир Ивкин – ваш проводник к самопознанию
-        </h2>
+    <section id="about" className="section-container bg-neuro-mid">
+      <div className="max-w-5xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl text-center mb-20 decorative-line tracking-tight text-glow"
+        >
+          Владимир Ивкин — ваш проводник к самопознанию
+        </motion.h2>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="grid md:grid-cols-5 gap-12 items-center"
         >
-          <div className="order-2 md:order-1">
-            <h3 className="text-2xl text-best-purple mb-6">Профессиональный опыт</h3>
-            <p className="text-lg mb-6">
-              Владимир Ивкин — опытный психолог с более чем 15-летним стажем работы в области психологической диагностики и коррекции. Ученик профессора Халлима Калера, практикующий метод BEST-психопунктуры, который успешно применяется для решения широкого спектра психологических проблем.
-            </p>
-            
-            <h3 className="text-2xl text-best-purple mb-6">Философия работы</h3>
-            <p className="text-lg mb-6">
-              "Мой подход основан на глубоком уважении к уникальности каждого человека. Я верю, что все ответы уже есть внутри нас — задача специалиста помочь их обнаружить и активировать врожденные механизмы саморегуляции."
-            </p>
-            
-            <blockquote className="border-l-4 border-best-gold pl-4 italic text-lg">
-              "BEST-психопунктура — это не просто диагностика, а мощный инструмент трансформации, который помогает увидеть корневые причины проблем и открывает путь к их решению."
-            </blockquote>
-          </div>
-          
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="order-1 md:order-2"
+            className="md:col-span-2 order-1 md:order-2"
           >
-            <div className="relative">
-              <div className="absolute -top-4 -left-4 w-full h-full border-2 border-best-gold rounded-lg"></div>
+            <div className="relative animated-border p-1 rounded-xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                src="/lovable-uploads/37b5ef41-2688-4302-b466-688ef165d1a9.png" 
                 alt="Владимир Ивкин" 
-                className="w-full rounded-lg shadow-lg relative z-10"
+                className="w-full aspect-square object-cover rounded-lg"
               />
-              <div className="bg-white shadow-lg p-4 rounded absolute -bottom-6 -right-6 z-20 border border-best-lightGray">
-                <p className="font-playfair text-best-purple font-bold">Владимир Ивкин</p>
-                <p className="text-sm text-best-darkGray">Психолог, практикующий метод BEST-психопунктуры</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+                <p className="font-heading text-white font-bold">Владимир Ивкин</p>
+                <p className="text-sm text-white/80">Психолог, ученик профессора Халлима Калера</p>
               </div>
             </div>
           </motion.div>
+          
+          <div className="md:col-span-3 order-2 md:order-1 neo-glass p-8">
+            <h3 className="text-2xl text-gradient mb-6">Профессиональный опыт</h3>
+            <p className="text-lg mb-6 text-white/80">
+              Владимир Ивкин — психолог с более чем 15-летним стажем в области психологической диагностики и коррекции. Является учеником профессора Халлима Калера и одним из немногих специалистов, практикующих метод BEST-психопунктуры.
+            </p>
+            
+            <h3 className="text-2xl text-gradient mb-6">Философия работы</h3>
+            <p className="text-lg mb-6 text-white/80">
+              "Мой подход основан на глубоком уважении к уникальности каждого человека. Я верю, что все ответы уже есть внутри нас — задача специалиста помочь их обнаружить и активировать врожденные механизмы саморегуляции."
+            </p>
+            
+            <blockquote className="neo-glass p-6 border-l-4 border-accent italic text-lg mb-6">
+              <p className="text-white/90">"BEST-психопунктура — это не просто диагностика, а мощный инструмент трансформации, который помогает увидеть корневые причины проблем и открывает путь к их решению."</p>
+            </blockquote>
+            
+            <div className="text-lg text-white/80">
+              <p>Email: <a href="mailto:vladimir@ivkin.me" className="text-accent hover:text-accent/80 transition-colors">vladimir@ivkin.me</a></p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
