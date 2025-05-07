@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
+} from '@/components/ui/dialog';
 
 const BookingSection: React.FC = () => {
   const { toast } = useToast();
@@ -14,43 +21,75 @@ const BookingSection: React.FC = () => {
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    // Don't prevent default as we want the form to actually submit
-    
-    // Combine phone number with message before form submission
-    const messageElement = document.getElementById('message') as HTMLTextAreaElement;
-    if (messageElement && formData.phone) {
-      messageElement.value = `Phone: ${formData.phone}\n\n${formData.message}`;
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission
     
     setIsSubmitting(true);
     
-    // The form will be submitted to Formspree automatically
-    // We'll show a loading state briefly to improve UX
-    setTimeout(() => {
-      setIsSubmitting(false);
-      
-      // Reset form (will happen after redirect/reload from Formspree)
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        message: '',
+    // Prepare the form data for submission
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('name', formData.name);
+    formDataToSubmit.append('email', formData.email);
+    
+    // Combine phone with message
+    const combinedMessage = `Phone: ${formData.phone}\n\n${formData.message}`;
+    formDataToSubmit.append('message', combinedMessage);
+    
+    try {
+      // Submit the form data to Formspree using fetch
+      const response = await fetch('https://formspree.io/f/xeogkeaw', {
+        method: 'POST',
+        body: formDataToSubmit,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
       
-      // Show success toast (this will only be visible momentarily before redirect)
+      if (response.ok) {
+        // Show custom confirmation
+        setShowConfirmation(true);
+        
+        // Reset form
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          message: '',
+        });
+        
+        // Show success toast
+        toast({
+          title: "Заявка отправлена!",
+          description: "Мы свяжемся с вами в ближайшее время для подтверждения",
+          duration: 5000,
+        });
+      } else {
+        // Show error toast if the submission failed
+        toast({
+          title: "Ошибка отправки",
+          description: "Не удалось отправить заявку. Пожалуйста, попробуйте позже.",
+          variant: "destructive",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
       toast({
-        title: "Заявка отправлена!",
-        description: "Мы свяжемся с вами в ближайшее время для подтверждения",
+        title: "Ошибка отправки",
+        description: "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.",
+        variant: "destructive",
         duration: 5000,
       });
-    }, 500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,7 +118,7 @@ const BookingSection: React.FC = () => {
               Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее время для обсуждения деталей консультации.
             </p>
             
-            <form action="https://formspree.io/f/xeogkeaw" method="post" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-white mb-2">Ваше имя *</label>
                 <input
@@ -98,7 +137,7 @@ const BookingSection: React.FC = () => {
                 <input
                   type="tel"
                   id="phone"
-                  name="phone" // This won't be sent directly to Formspree
+                  name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
@@ -147,6 +186,18 @@ const BookingSection: React.FC = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={showConfirmation} onOpenChange={setShowConfirmation}>
+        <DialogContent className="bg-white border border-best-gold">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-best-purple">Заявка отправлена!</DialogTitle>
+            <DialogDescription className="text-gray-700 mt-4">
+              Спасибо за ваше обращение! Мы свяжемся с вами в ближайшее время для подтверждения консультации.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
