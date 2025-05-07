@@ -1,10 +1,8 @@
 
 import React, { useState } from 'react';
-import { Check, AlertCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-import { motion } from 'framer-motion';
-import { sendEmail } from '@/api/send-email';
 
 const BookingSection: React.FC = () => {
   const { toast } = useToast();
@@ -22,49 +20,37 @@ const BookingSection: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    // Don't prevent default as we want the form to actually submit
+    
+    // Combine phone number with message before form submission
+    const messageElement = document.getElementById('message') as HTMLTextAreaElement;
+    if (messageElement && formData.phone) {
+      messageElement.value = `Phone: ${formData.phone}\n\n${formData.message}`;
+    }
+    
     setIsSubmitting(true);
     
-    try {
-      // Send email using EmailJS
-      const success = await sendEmail({
-        ...formData,
-        captchaToken: ''
+    // The form will be submitted to Formspree automatically
+    // We'll show a loading state briefly to improve UX
+    setTimeout(() => {
+      setIsSubmitting(false);
+      
+      // Reset form (will happen after redirect/reload from Formspree)
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
       });
       
-      if (success) {
-        toast({
-          title: "Заявка отправлена!",
-          description: "Мы свяжемся с вами в ближайшее время для подтверждения",
-          duration: 5000,
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          message: '',
-        });
-
-      } else {
-        toast({
-          title: "Ошибка отправки",
-          description: "Не удалось отправить заявку. Пожалуйста, попробуйте позже или свяжитесь с нами напрямую.",
-          duration: 5000,
-        });
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
+      // Show success toast (this will only be visible momentarily before redirect)
       toast({
-        title: "Ошибка отправки",
-        description: "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.",
+        title: "Заявка отправлена!",
+        description: "Мы свяжемся с вами в ближайшее время для подтверждения",
         duration: 5000,
       });
-    } finally {
-      setIsSubmitting(false);
-    }
+    }, 500);
   };
 
   return (
@@ -93,7 +79,7 @@ const BookingSection: React.FC = () => {
               Оставьте свои контактные данные, и мы свяжемся с вами в ближайшее время для обсуждения деталей консультации.
             </p>
             
-            <form onSubmit={handleSubmit}>
+            <form action="https://formspree.io/f/xeogkeaw" method="post" onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-white mb-2">Ваше имя *</label>
                 <input
@@ -112,7 +98,7 @@ const BookingSection: React.FC = () => {
                 <input
                   type="tel"
                   id="phone"
-                  name="phone"
+                  name="phone" // This won't be sent directly to Formspree
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
@@ -144,8 +130,6 @@ const BookingSection: React.FC = () => {
                   className="w-full px-4 py-2 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 bg-white/80"
                 ></textarea>
               </div>
-              
-
               
               <button
                 type="submit"
