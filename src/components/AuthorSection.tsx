@@ -44,7 +44,7 @@ const AuthorSection: React.FC = () => {
               once: true
             }} className="flex items-start">
                 <span className="text-accent mr-2 text-xl">•</span>
-                <span>Индус, гражданин Индонезии, лся 29 июля 1935 года</span>
+                <span>Индус, гражданин Индонезии (1935 - 2015).</span>
               </motion.li>
               <motion.li initial={{
               opacity: 0,
