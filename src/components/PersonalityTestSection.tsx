@@ -82,6 +82,25 @@ const PersonalityTestSection: React.FC = () => {
           ))}
         </div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="neo-glass p-6 md:p-8 rounded-xl mb-8 text-white/80 text-sm md:text-base space-y-3 leading-relaxed"
+        >
+          <p><span className="text-primary font-semibold">Если ваш выбор 1,</span> то на уровне ума вы мягкий человек, на уровне тела – нежный, на уровне души – перфекционист, вы чувствуете любое несовершенство.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 2,</span> то на уровне ума вы импульсивный человек, на уровне тела – одержимый, на уровне души – терпеливый.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 3,</span> то на уровне ума вы ранимый человек, на уровне тела – скованный, на уровне души – жизнеспособный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 4,</span> то на уровне ума вы весёлый человек, на уровне тела – выносливый, на уровне души – серьёзный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 5,</span> то на уровне ума вы забывчивый человек, на уровне тела – беспокойный, на уровне души – решительный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 6,</span> то на уровне ума вы одержимый человек, на уровне тела – стремительный, на уровне души – осторожный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 7,</span> то на уровне ума вы спокойный человек, на уровне тела – мягкий, на уровне души – эмоциональный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 8,</span> то на уровне ума вы твёрдый человек, на уровне тела – агрессивный, на уровне души – депрессивный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 9,</span> то на уровне ума вы тревожный человек, на уровне тела – чувствительный, на уровне души – радостный.</p>
+          <p><span className="text-primary font-semibold">Если ваш выбор 10,</span> то на уровне ума вы волевой человек, на уровне тела – возбудимый, на уровне души – печальный.</p>
+        </motion.div>
+
         <AnimatePresence mode="wait">
           {selected && (
             <motion.div
